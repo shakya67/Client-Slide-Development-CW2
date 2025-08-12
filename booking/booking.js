@@ -16,7 +16,7 @@ $(function () {
   const $imgContainer = $('.carousel-track').empty();
   const $img = $('<img>', {
     src: car.img,
-    alt: car.name + ' image'
+    alt: car.name + ' ../img'
   }).on('error', function() {
     console.error('❌ Failed to load:', car.img);
     $(this).attr('src', '../img/car-placeholder.png');
