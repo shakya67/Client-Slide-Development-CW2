@@ -1,4 +1,40 @@
-$(document).ready(function () {
+
+
+
+    // Cookie Consent Functionality
+function checkCookieConsent() {
+  if (!document.cookie.includes('cookieConsent=')) {
+    // Create cookie banner
+    const cookieBanner = document.createElement('div');
+    cookieBanner.className = 'cookie-consent-banner';
+    cookieBanner.innerHTML = `
+      <div class="cookie-content">
+        <p>We use cookies to enhance your experience on our website. By continuing to browse, you agree to our use of cookies.</p>
+        <div class="cookie-buttons">
+          <button id="acceptCookies" class="cookie-btn accept">Accept</button>
+          <button id="rejectCookies" class="cookie-btn reject">Reject</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(cookieBanner);
+
+    // Add event listeners
+    document.getElementById('acceptCookies').addEventListener('click', () => {
+      document.cookie = 'cookieConsent=accepted; max-age=2592000; path=/'; // 30 days
+      cookieBanner.style.display = 'none';
+    });
+
+    document.getElementById('rejectCookies').addEventListener('click', () => {
+      document.cookie = 'cookieConsent=rejected; max-age=2592000; path=/'; // 30 days
+      cookieBanner.style.display = 'none';
+    });
+  }
+}
+// Call the function when DOM is loaded
+$(document).ready(function() {
+  checkCookieConsent();
+  
+ $(document).ready(function () {
       // Navbar toggle for mobile menu
       $("#menu-toggle").click(function () {
         $("#nav-links").toggleClass("active");
@@ -67,3 +103,4 @@ $(document).ready(function () {
         );
       });
     });
+});
